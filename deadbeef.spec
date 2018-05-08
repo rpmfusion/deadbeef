@@ -83,11 +83,14 @@ find . \( -name '*.cpp' -or -name '*.hpp' -or -name '*.h' \) -and -executable -e
 
 
 %build
-%configure --enable-ffmpeg --docdir=%{_defaultdocdir}/%{name}-%{version} \
+%configure \
+    --enable-ffmpeg --docdir=%{_defaultdocdir}/%{name}-%{version} \
+    --disable-silent-rules \
+    --disable-static \
 %if 0%{?fedora} >= 15 || 0%{?rhel} >= 7
-    --disable-gtk2 --enable-gtk3 --disable-static
+    --disable-gtk2 --enable-gtk3
 %else
-    --enable-gtk2 --disable-gtk3 --disable-lfm --disable-static
+    --enable-gtk2 --disable-gtk3 --disable-lfm
 %endif
 %make_build
 
