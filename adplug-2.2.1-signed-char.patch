@@ -1,0 +1,22 @@
+--- plugins/adplug/adplug/s3m.cpp
++++ plugins/adplug/adplug/s3m.cpp
+@@ -26,7 +26,7 @@
+ #include <string.h>
+ #include "s3m.h"
+ 
+-const char Cs3mPlayer::chnresolv[] =	// S3M -> adlib channel conversion
++const signed char Cs3mPlayer::chnresolv[] =	// S3M -> adlib channel conversion
+   {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,0,1,2,3,4,5,6,7,8,-1,-1,-1,-1,-1,-1,-1};
+ 
+ const unsigned short Cs3mPlayer::notetable[12] =		// S3M adlib note table
+--- plugins/adplug/adplug/s3m.h
++++ plugins/adplug/adplug/s3m.h
+@@ -92,7 +92,7 @@ class Cs3mPlayer: public CPlayer
+   char filetype[30];
+ 
+  private:
+-  static const char chnresolv[];
++  static const signed char chnresolv[];
+   static const unsigned short notetable[12];
+   static const unsigned char vibratotab[32];
+ 

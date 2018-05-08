@@ -8,7 +8,9 @@ Group:          Applications/Multimedia
 License:        GPLv2+ and LGPLv2+ and BSD and MIT and zlib
 URL:            http://deadbeef.sourceforge.net
 Source0:        http://downloads.sourceforge.net/project/%{name}/%{name}-%{version}.tar.bz2
-Patch:          desktop.patch
+Patch0:         desktop.patch
+Patch1:         adplug-2.2.1-signed-char.patch
+Patch2:         sidplay-libs-gcc6.patch
 
 BuildRequires:  pkgconfig(alsa)
 BuildRequires:  pkgconfig(dbus-1)
