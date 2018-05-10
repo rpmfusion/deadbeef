@@ -1,5 +1,6 @@
---- deadbeef.desktop.in	2016-04-27 09:19:10.000000000 -0600
-+++ deadbeef.desktop-1.in	2016-04-27 12:52:26.510991183 -0600
+diff -uNdr deadbeef-0.7.2_orig/deadbeef.desktop.in deadbeef-0.7.2_new/deadbeef.desktop.in
+--- deadbeef-0.7.2_orig/deadbeef.desktop.in	2016-06-19 14:26:18.000000000 +0300
++++ deadbeef-0.7.2_new/deadbeef.desktop.in	2018-05-10 14:00:34.981900715 +0300
 @@ -18,60 +18,60 @@
  
  X-Ayatana-Desktop-Shortcuts=Play;Pause;Stop;Next;Prev

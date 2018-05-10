@@ -1,6 +1,6 @@
 Name:           deadbeef
 Version:        0.7.2
-Release:        5%{?dist}
+Release:        6%{?dist}
 Summary:        An audio player for GNU/Linux
 Summary(ru):    Музыкальный проигрыватель для GNU/Linux
 
@@ -78,7 +78,7 @@ This package contains plugins for %{name}
 
 
 %prep
-%autosetup -p0
+%autosetup -p1
 
 # Remove exec permission from source files
 find . \( -name '*.cpp' -or -name '*.hpp' -or -name '*.h' \) -and -executable -exec chmod -x {} \;
@@ -134,6 +134,9 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/%{name}.desktop
 
 
 %changelog
+* Thu May 10 2018 Vasiliy N. Glazov <vascom2@gmail.com> - 0.7.2-6
+- Correct patches as in upstream
+
 * Fri May 04 2018 Vasiliy N. Glazov <vascom2@gmail.com> - 0.7.2-5
 - Rebuild with new ffmpeg
 
