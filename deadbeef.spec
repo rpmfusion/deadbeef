@@ -12,6 +12,7 @@ Patch0:         desktop.patch
 Patch1:         adplug-2.2.1-signed-char.patch
 Patch2:         sidplay-libs-gcc6.patch
 
+BuildRequires:  gcc-c++
 BuildRequires:  pkgconfig(alsa)
 BuildRequires:  pkgconfig(dbus-1)
 BuildRequires:  ffmpeg-devel
