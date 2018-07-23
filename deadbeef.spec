@@ -4,7 +4,6 @@ Release:        6%{?dist}
 Summary:        An audio player for GNU/Linux
 Summary(ru):    Музыкальный проигрыватель для GNU/Linux
 
-Group:          Applications/Multimedia
 License:        GPLv2+ and LGPLv2+ and BSD and MIT and zlib
 URL:            http://deadbeef.sourceforge.net
 Source0:        http://downloads.sourceforge.net/project/%{name}/%{name}-%{version}.tar.bz2
@@ -61,7 +60,6 @@ DeaDBeeF (как в 0xDEADBEEF) это аудиопроигрыватель дл
 
 %package devel
 Summary:    Static library and header files for the %{name}
-Group:      Development/Libraries
 Requires:   %{name}%{?_isa} = %{version}-%{release}
 
 
@@ -71,7 +69,6 @@ developing %{name}.
 
 %package plugins
 Summary:    Plugins for %{name}
-Group:      Applications/Multimedia
 Requires:   %{name}%{?_isa} = %{version}-%{release}
 
 %description plugins
