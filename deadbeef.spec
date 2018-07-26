@@ -1,6 +1,6 @@
 Name:           deadbeef
 Version:        0.7.2
-Release:        6%{?dist}
+Release:        7%{?dist}
 Summary:        An audio player for GNU/Linux
 Summary(ru):    Музыкальный проигрыватель для GNU/Linux
 
@@ -132,6 +132,9 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/%{name}.desktop
 
 
 %changelog
+* Thu Jul 26 2018 RPM Fusion Release Engineering <leigh123linux@gmail.com> - 0.7.2-7
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_29_Mass_Rebuild
+
 * Thu May 10 2018 Vasiliy N. Glazov <vascom2@gmail.com> - 0.7.2-6
 - Correct patches as in upstream
 
