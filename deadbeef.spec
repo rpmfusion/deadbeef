@@ -1,15 +1,16 @@
+%global gitcommit_full 6d02b028861ab4c8c8f06f480d5b2197011b6dbd
+%global gitcommit %(c=%{gitcommit_full}; echo ${c:0:7})
+%global date 20180814
+
 Name:           deadbeef
-Version:        0.7.2
-Release:        7%{?dist}
+Version:        0.7.3
+Release:        0.1.%{date}git%{gitcommit}%{?dist}
 Summary:        An audio player for GNU/Linux
 Summary(ru):    Музыкальный проигрыватель для GNU/Linux
 
 License:        GPLv2+ and LGPLv2+ and BSD and MIT and zlib
 URL:            http://deadbeef.sourceforge.net
-Source0:        http://downloads.sourceforge.net/project/%{name}/%{name}-%{version}.tar.bz2
-Patch0:         desktop.patch
-Patch1:         adplug-2.2.1-signed-char.patch
-Patch2:         sidplay-libs-gcc6.patch
+Source0:        https://github.com/DeaDBeeF-Player/deadbeef/tarball/%{gitcommit_full}
 
 BuildRequires:  gcc-c++
 BuildRequires:  pkgconfig(alsa)
@@ -43,6 +44,7 @@ BuildRequires:  pkgconfig(gtk+-2.0)
 %endif
 BuildRequires:  desktop-file-utils
 BuildRequires:  pkgconfig(jansson)
+BuildRequires:  pkgconfig(opusfile)
 
 Requires:       hicolor-icon-theme
 Requires:       %{name}-plugins%{?_isa} = %{version}-%{release}
@@ -76,13 +78,19 @@ This package contains plugins for %{name}
 
 
 %prep
-%autosetup -p1
+%autosetup -p1 -n DeaDBeeF-Player-%{name}-%{gitcommit}
 
 # Remove exec permission from source files
 find . \( -name '*.cpp' -or -name '*.hpp' -or -name '*.h' \) -and -executable -exec chmod -x {} \;
 
+for data in Play Pause Stop Next Prev
+do
+    sed -i "s|$data Shortcut Group|X-$data Shortcut Group|" deadbeef.desktop.in
+done
+
 
 %build
+./autogen.sh
 %configure \
     --enable-ffmpeg --docdir=%{_defaultdocdir}/%{name}-%{version} \
     --disable-silent-rules \
@@ -132,6 +140,9 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/%{name}.desktop
 
 
 %changelog
+* Tue Aug 14 2018 Vasiliy N. Glazov <vascom2@gmail.com> - 0.7.3-0.1.20180814git6d02b02
+- Update to latest git
+
 * Thu Jul 26 2018 RPM Fusion Release Engineering <leigh123linux@gmail.com> - 0.7.2-7
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_29_Mass_Rebuild
 
