@@ -1,6 +1,6 @@
-%global gitcommit_full 6d02b028861ab4c8c8f06f480d5b2197011b6dbd
+%global gitcommit_full 73f972277cd7ecebc92dda6ae2a74ea05a9719f6
 %global gitcommit %(c=%{gitcommit_full}; echo ${c:0:7})
-%global date 20180814
+%global date 20181224
 
 Name:           deadbeef
 Version:        0.7.3
@@ -140,6 +140,9 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/%{name}.desktop
 
 
 %changelog
+* Thu Dec 27 2018 Vasiliy N. Glazov <vascom2@gmail.com> - 0.7.3-0.1.20181224git73f9722
+- Update to latest git
+
 * Tue Aug 14 2018 Vasiliy N. Glazov <vascom2@gmail.com> - 0.7.3-0.1.20180814git6d02b02
 - Update to latest git
 
