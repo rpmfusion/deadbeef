@@ -1,6 +1,9 @@
-%global gitcommit_full 73f972277cd7ecebc92dda6ae2a74ea05a9719f6
+%global gitcommit_full 373f55642b6b752bdca159ed621fcd732ce9063c
 %global gitcommit %(c=%{gitcommit_full}; echo ${c:0:7})
-%global date 20181224
+%global date 20190209
+
+%global optflags %{optflags} -flto
+%global build_ldflags %{build_ldflags} -flto
 
 Name:           deadbeef
 Version:        0.7.3
@@ -36,12 +39,7 @@ BuildRequires:  yasm-devel
 BuildRequires:  bison
 BuildRequires:  pkgconfig(imlib2)
 BuildRequires:  pkgconfig(libzip)
-%if 0%{?fedora} >= 15 || 0%{?rhel} >= 7
 BuildRequires:  pkgconfig(gtk+-3.0)
-%else
-BuildRequires:  libstdc++-devel
-BuildRequires:  pkgconfig(gtk+-2.0)
-%endif
 BuildRequires:  desktop-file-utils
 BuildRequires:  pkgconfig(jansson)
 BuildRequires:  pkgconfig(opusfile)
@@ -90,16 +88,16 @@ done
 
 
 %build
+export AR=%{_bindir}/gcc-ar
+export RANLIB=%{_bindir}/gcc-ranlib
+export NM=%{_bindir}/gcc-nm
 ./autogen.sh
 %configure \
     --enable-ffmpeg --docdir=%{_defaultdocdir}/%{name}-%{version} \
     --disable-silent-rules \
     --disable-static \
-%if 0%{?fedora} >= 15 || 0%{?rhel} >= 7
-    --disable-gtk2 --enable-gtk3
-%else
-    --enable-gtk2 --disable-gtk3 --disable-lfm
-%endif
+    --disable-gtk2 \
+    --enable-gtk3
 %make_build
 
 
@@ -140,6 +138,10 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/%{name}.desktop
 
 
 %changelog
+* Wed Feb 27 2019 Vasiliy N. Glazov <vascom2@gmail.com> - 0.7.3-0.1.20190209git373f556
+- Update to latest git
+- Enable LTO
+
 * Thu Dec 27 2018 Vasiliy N. Glazov <vascom2@gmail.com> - 0.7.3-0.1.20181224git73f9722
 - Update to latest git
 
