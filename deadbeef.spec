@@ -7,7 +7,7 @@
 
 Name:           deadbeef
 Version:        0.7.3
-Release:        0.1.%{date}git%{gitcommit}%{?dist}
+Release:        0.2.%{date}git%{gitcommit}%{?dist}
 Summary:        An audio player for GNU/Linux
 Summary(ru):    Музыкальный проигрыватель для GNU/Linux
 
@@ -138,6 +138,9 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/%{name}.desktop
 
 
 %changelog
+* Mon Mar 04 2019 RPM Fusion Release Engineering <leigh123linux@gmail.com> - 0.7.3-0.2.20190209git373f556
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_30_Mass_Rebuild
+
 * Wed Feb 27 2019 Vasiliy N. Glazov <vascom2@gmail.com> - 0.7.3-0.1.20190209git373f556
 - Update to latest git
 - Enable LTO
