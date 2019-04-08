@@ -1,19 +1,15 @@
-%global gitcommit_full 373f55642b6b752bdca159ed621fcd732ce9063c
-%global gitcommit %(c=%{gitcommit_full}; echo ${c:0:7})
-%global date 20190209
-
 %global optflags %{optflags} -flto
 %global build_ldflags %{build_ldflags} -flto
 
 Name:           deadbeef
-Version:        0.7.3
-Release:        0.2.%{date}git%{gitcommit}%{?dist}
+Version:        1.8.0
+Release:        1%{?dist}
 Summary:        An audio player for GNU/Linux
 Summary(ru):    Музыкальный проигрыватель для GNU/Linux
 
 License:        GPLv2+ and LGPLv2+ and BSD and MIT and zlib
 URL:            http://deadbeef.sourceforge.net
-Source0:        https://github.com/DeaDBeeF-Player/deadbeef/tarball/%{gitcommit_full}
+Source0:        https://github.com/DeaDBeeF-Player/%{name}/archive/%{version}.tar.gz
 
 BuildRequires:  gcc-c++
 BuildRequires:  pkgconfig(alsa)
@@ -76,7 +72,7 @@ This package contains plugins for %{name}
 
 
 %prep
-%autosetup -p1 -n DeaDBeeF-Player-%{name}-%{gitcommit}
+%autosetup
 
 # Remove exec permission from source files
 find . \( -name '*.cpp' -or -name '*.hpp' -or -name '*.h' \) -and -executable -exec chmod -x {} \;
@@ -138,6 +134,9 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/%{name}.desktop
 
 
 %changelog
+* Mon Apr 08 2019 Vasiliy N. Glazov <vascom2@gmail.com> - 1.8.0-1
+- Update to 1.8.0
+
 * Mon Mar 04 2019 RPM Fusion Release Engineering <leigh123linux@gmail.com> - 0.7.3-0.2.20190209git373f556
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_30_Mass_Rebuild
 
