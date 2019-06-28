@@ -2,7 +2,7 @@
 %global build_ldflags %{build_ldflags} -flto
 
 Name:           deadbeef
-Version:        1.8.0
+Version:        1.8.1
 Release:        1%{?dist}
 Summary:        An audio player for GNU/Linux
 Summary(ru):    Музыкальный проигрыватель для GNU/Linux
@@ -134,6 +134,9 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/%{name}.desktop
 
 
 %changelog
+* Fri Jun 28 2019 Vasiliy N. Glazov <vascom2@gmail.com> - 1.8.1-1
+- Update to 1.8.1
+
 * Mon Apr 08 2019 Vasiliy N. Glazov <vascom2@gmail.com> - 1.8.0-1
 - Update to 1.8.0
 
