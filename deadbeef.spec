@@ -3,7 +3,7 @@
 
 Name:           deadbeef
 Version:        1.8.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        An audio player for GNU/Linux
 Summary(ru):    Музыкальный проигрыватель для GNU/Linux
 
@@ -134,6 +134,9 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/%{name}.desktop
 
 
 %changelog
+* Wed Aug 07 2019 Leigh Scott <leigh123linux@gmail.com> - 1.8.1-2
+- Rebuild for new ffmpeg version
+
 * Fri Jun 28 2019 Vasiliy N. Glazov <vascom2@gmail.com> - 1.8.1-1
 - Update to 1.8.1
 
