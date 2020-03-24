@@ -1,9 +1,9 @@
-%global optflags %{optflags} -flto
+%global optflags %{optflags} -flto=auto
 %global build_ldflags %{build_ldflags} -flto
 
 Name:           deadbeef
-Version:        1.8.2
-Release:        2%{?dist}
+Version:        1.8.3
+Release:        1%{?dist}
 Summary:        An audio player for GNU/Linux
 Summary(ru):    Музыкальный проигрыватель для GNU/Linux
 
@@ -134,6 +134,9 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/%{name}.desktop
 
 
 %changelog
+* Tue Mar 24 2020 Vasiliy N. Glazov <vascom2@gmail.com> - 1.8.3-1
+- Update to 1.8.3
+
 * Tue Feb 04 2020 RPM Fusion Release Engineering <leigh123linux@gmail.com> - 1.8.2-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_32_Mass_Rebuild
 
