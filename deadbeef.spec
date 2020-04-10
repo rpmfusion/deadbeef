@@ -3,7 +3,7 @@
 
 Name:           deadbeef
 Version:        1.8.3
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        An audio player for GNU/Linux
 Summary(ru):    Музыкальный проигрыватель для GNU/Linux
 
@@ -134,6 +134,9 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/%{name}.desktop
 
 
 %changelog
+* Fri Apr 10 2020 Leigh Scott <leigh123linux@gmail.com> - 1.8.3-2
+- Rebuild for new libcdio version
+
 * Tue Mar 24 2020 Vasiliy N. Glazov <vascom2@gmail.com> - 1.8.3-1
 - Update to 1.8.3
 
