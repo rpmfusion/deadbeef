@@ -2,13 +2,13 @@
 %global build_ldflags %{build_ldflags} -flto
 
 Name:           deadbeef
-Version:        1.8.3
-Release:        2%{?dist}
+Version:        1.8.4
+Release:        1%{?dist}
 Summary:        An audio player for GNU/Linux
 Summary(ru):    Музыкальный проигрыватель для GNU/Linux
 
 License:        GPLv2+ and LGPLv2+ and BSD and MIT and zlib
-URL:            http://deadbeef.sourceforge.net
+URL:            https://deadbeef.sourceforge.io/
 Source0:        https://github.com/DeaDBeeF-Player/%{name}/archive/%{version}.tar.gz
 
 BuildRequires:  gcc-c++
@@ -134,6 +134,9 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/%{name}.desktop
 
 
 %changelog
+* Sun Jul  5 2020 Vasiliy N. Glazov <vascom2@gmail.com> - 1.8.4-1
+- Update to 1.8.4
+
 * Fri Apr 10 2020 Leigh Scott <leigh123linux@gmail.com> - 1.8.3-2
 - Rebuild for new libcdio version
 
