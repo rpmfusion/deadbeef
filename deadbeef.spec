@@ -1,17 +1,21 @@
-%global optflags %{optflags} -flto=auto
-%global build_ldflags %{build_ldflags} -flto
+%global toolchain clang
+
+# Git submodules
+%global mp4p_commit        f111d7aa10d4516f5e02465245e9202db83b7c10
+%global mp4p_shortcommit   %(c=%{mp4p_commit}; echo ${c:0:7})
 
 Name:           deadbeef
-Version:        1.8.4
-Release:        4%{?dist}
+Version:        1.8.7
+Release:        1%{?dist}
 Summary:        An audio player for GNU/Linux
 Summary(ru):    Музыкальный проигрыватель для GNU/Linux
 
 License:        GPLv2+ and LGPLv2+ and BSD and MIT and zlib
 URL:            https://deadbeef.sourceforge.io/
 Source0:        https://github.com/DeaDBeeF-Player/%{name}/archive/%{version}.tar.gz
+Source1:        https://github.com/DeaDBeeF-Player/mp4p/archive/%{mp4p_commit}/mp4p-%{mp4p_shortcommit}.tar.gz
 
-BuildRequires:  gcc-c++
+BuildRequires:  clang
 BuildRequires:  pkgconfig(alsa)
 BuildRequires:  pkgconfig(dbus-1)
 BuildRequires:  ffmpeg-devel
@@ -39,6 +43,7 @@ BuildRequires:  pkgconfig(gtk+-3.0)
 BuildRequires:  desktop-file-utils
 BuildRequires:  pkgconfig(jansson)
 BuildRequires:  pkgconfig(opusfile)
+BuildRequires:  libdispatch-devel
 
 Requires:       hicolor-icon-theme
 Requires:       %{name}-plugins%{?_isa} = %{version}-%{release}
@@ -73,6 +78,8 @@ This package contains plugins for %{name}
 
 %prep
 %autosetup
+tar -xvf %{SOURCE1}
+mv mp4p-%{mp4p_commit}/* external/mp4p
 
 # Remove exec permission from source files
 find . \( -name '*.cpp' -or -name '*.hpp' -or -name '*.h' \) -and -executable -exec chmod -x {} \;
@@ -84,16 +91,15 @@ done
 
 
 %build
-export AR=%{_bindir}/gcc-ar
-export RANLIB=%{_bindir}/gcc-ranlib
-export NM=%{_bindir}/gcc-nm
 ./autogen.sh
 %configure \
     --enable-ffmpeg --docdir=%{_defaultdocdir}/%{name}-%{version} \
     --disable-silent-rules \
     --disable-static \
     --disable-gtk2 \
-    --enable-gtk3
+    --enable-gtk3 \
+    --enable-lfm \
+    --disable-notify
 %make_build
 
 
@@ -134,6 +140,9 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/%{name}.desktop
 
 
 %changelog
+* Tue Feb 23 2021 Vasiliy N. Glazov <vascom2@gmail.com> - 1.8.7-1
+- Update to 1.8.7
+
 * Wed Feb 03 2021 RPM Fusion Release Engineering <leigh123linux@gmail.com> - 1.8.4-4
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_34_Mass_Rebuild
 
