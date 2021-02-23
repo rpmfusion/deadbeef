@@ -98,7 +98,11 @@ done
     --disable-static \
     --disable-gtk2 \
     --enable-gtk3 \
+%ifarch armv7hl ppc64le
+    --disable-lfm \
+%else
     --enable-lfm \
+%endif
     --disable-notify
 %make_build
 
