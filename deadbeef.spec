@@ -15,6 +15,10 @@ URL:            https://deadbeef.sourceforge.io/
 Source0:        https://github.com/DeaDBeeF-Player/%{name}/archive/%{version}.tar.gz
 Source1:        https://github.com/DeaDBeeF-Player/mp4p/archive/%{mp4p_commit}/mp4p-%{mp4p_shortcommit}.tar.gz
 
+# Build for armv7hl failed
+# https://github.com/DeaDBeeF-Player/deadbeef/issues/2538
+ExcludeArch:    armv7hl
+
 BuildRequires:  clang
 BuildRequires:  pkgconfig(alsa)
 BuildRequires:  pkgconfig(dbus-1)
