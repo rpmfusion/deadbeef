@@ -1,7 +1,7 @@
 %global toolchain clang
 
 # Git submodules
-%global mp4p_commit        f111d7aa10d4516f5e02465245e9202db83b7c10
+%global mp4p_commit        82291e47ef90f5d36dfa6dc77c59d74496c55a45
 %global mp4p_shortcommit   %(c=%{mp4p_commit}; echo ${c:0:7})
 
 Name:           deadbeef
