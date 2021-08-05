@@ -5,8 +5,8 @@
 %global mp4p_shortcommit   %(c=%{mp4p_commit}; echo ${c:0:7})
 
 Name:           deadbeef
-Version:        1.8.7
-Release:        2%{?dist}
+Version:        1.8.8
+Release:        1%{?dist}
 Summary:        An audio player for GNU/Linux
 Summary(ru):    Музыкальный проигрыватель для GNU/Linux
 
@@ -151,6 +151,9 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/%{name}.desktop
 
 
 %changelog
+* Thu Aug 05 2021 Vasiliy N. Glazov <vascom2@gmail.com> - 1.8.8-1
+- Update to 1.8.8
+
 * Mon Aug 02 2021 RPM Fusion Release Engineering <leigh123linux@gmail.com> - 1.8.7-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_35_Mass_Rebuild
 
