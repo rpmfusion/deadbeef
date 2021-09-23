@@ -1,0 +1,12 @@
+diff -uNdr deadbeef-1.8.8_orig/tf.c deadbeef-1.8.8_new/tf.c
+--- deadbeef-1.8.8_orig/tf.c	2021-08-01 20:00:05.000000000 +0300
++++ deadbeef-1.8.8_new/tf.c	2021-09-23 08:28:45.589428627 +0300
+@@ -3650,7 +3650,7 @@
+ 
+     c.i = script;
+ 
+-    uint8_t code[strlen(script) * 3];
++    uint8_t code[strlen(script) * 3 + 1];
+     memset (code, 0, sizeof (code));
+ 
+     c.o = code;
