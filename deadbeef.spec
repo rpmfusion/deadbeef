@@ -6,7 +6,7 @@
 
 Name:           deadbeef
 Version:        1.8.8
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        An audio player for GNU/Linux
 Summary(ru):    Музыкальный проигрыватель для GNU/Linux
 
@@ -14,6 +14,9 @@ License:        GPLv2+ and LGPLv2+ and BSD and MIT and zlib
 URL:            https://deadbeef.sourceforge.io/
 Source0:        https://github.com/DeaDBeeF-Player/%{name}/archive/%{version}.tar.gz
 Source1:        https://github.com/DeaDBeeF-Player/mp4p/archive/%{mp4p_commit}/mp4p-%{mp4p_shortcommit}.tar.gz
+# Fix segfault
+# https://github.com/DeaDBeeF-Player/deadbeef/issues/2664
+Patch0:         segfault_fix.patch
 
 # Build for armv7hl failed
 # https://github.com/DeaDBeeF-Player/deadbeef/issues/2538
@@ -84,7 +87,7 @@ This package contains plugins for %{name}
 
 
 %prep
-%autosetup
+%autosetup -p1
 tar -xvf %{SOURCE1}
 mv mp4p-%{mp4p_commit}/* external/mp4p
 
@@ -151,6 +154,9 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/%{name}.desktop
 
 
 %changelog
+* Thu Sep 23 2021 Vasiliy N. Glazov <vascom2@gmail.com> - 1.8.8-2
+- Fix segfault 0 bytes stack allocation
+
 * Thu Aug 05 2021 Vasiliy N. Glazov <vascom2@gmail.com> - 1.8.8-1
 - Update to 1.8.8
 
