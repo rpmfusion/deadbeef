@@ -6,7 +6,7 @@
 
 Name:           deadbeef
 Version:        1.8.8
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        An audio player for GNU/Linux
 Summary(ru):    Музыкальный проигрыватель для GNU/Linux
 
@@ -154,6 +154,9 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/%{name}.desktop
 
 
 %changelog
+* Wed Feb 09 2022 RPM Fusion Release Engineering <sergiomb@rpmfusion.org> - 1.8.8-4
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_36_Mass_Rebuild
+
 * Thu Nov 11 2021 Leigh Scott <leigh123linux@gmail.com> - 1.8.8-3
 - Rebuilt for new ffmpeg snapshot
 
