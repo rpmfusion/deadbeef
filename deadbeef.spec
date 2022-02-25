@@ -6,7 +6,7 @@
 
 Name:           deadbeef
 Version:        1.8.8
-Release:        4%{?dist}
+Release:        5%{?dist}
 Summary:        An audio player for GNU/Linux
 Summary(ru):    Музыкальный проигрыватель для GNU/Linux
 
@@ -107,13 +107,13 @@ done
     --disable-silent-rules \
     --disable-static \
     --disable-gtk2 \
-    --enable-gtk3 \
 %ifarch armv7hl ppc64le
     --disable-lfm \
+    --disable-notify \
 %else
     --enable-lfm \
 %endif
-    --disable-notify
+    --enable-gtk3
 %make_build
 
 
@@ -154,6 +154,9 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/%{name}.desktop
 
 
 %changelog
+* Fri Feb 25 2022 Vasiliy N. Glazov <vascom2@gmail.com> - 1.8.8-5
+- Enable notifications
+
 * Wed Feb 09 2022 RPM Fusion Release Engineering <sergiomb@rpmfusion.org> - 1.8.8-4
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_36_Mass_Rebuild
 
