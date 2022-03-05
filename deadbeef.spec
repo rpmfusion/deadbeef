@@ -6,7 +6,7 @@
 
 Name:           deadbeef
 Version:        1.8.8
-Release:        5%{?dist}
+Release:        6%{?dist}
 Summary:        An audio player for GNU/Linux
 Summary(ru):    Музыкальный проигрыватель для GNU/Linux
 
@@ -25,7 +25,11 @@ ExcludeArch:    armv7hl
 BuildRequires:  clang
 BuildRequires:  pkgconfig(alsa)
 BuildRequires:  pkgconfig(dbus-1)
+%if 0%{?fedora} && 0%{?fedora} > 35
+BuildRequires:  compat-ffmpeg4-devel
+%else
 BuildRequires:  ffmpeg-devel
+%endif
 BuildRequires:  pkgconfig(flac)
 BuildRequires:  faad2-devel
 BuildRequires:  pkgconfig(libmms)
@@ -101,6 +105,9 @@ done
 
 
 %build
+%if 0%{?fedora} && 0%{?fedora} > 35
+export PKG_CONFIG_PATH="%{_libdir}/compat-ffmpeg4/pkgconfig"
+%endif
 ./autogen.sh
 %configure \
     --enable-ffmpeg --docdir=%{_defaultdocdir}/%{name}-%{version} \
@@ -154,6 +161,9 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/%{name}.desktop
 
 
 %changelog
+* Sat Mar 05 2022 Leigh Scott <leigh123linux@gmail.com> - 1.8.8-6
+- Use compat-ffmpeg4 for f36+
+
 * Fri Feb 25 2022 Vasiliy N. Glazov <vascom2@gmail.com> - 1.8.8-5
 - Enable notifications
 
