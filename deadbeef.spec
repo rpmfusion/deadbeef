@@ -52,7 +52,7 @@ BuildRequires:  pkgconfig(gtk+-3.0)
 BuildRequires:  desktop-file-utils
 BuildRequires:  pkgconfig(jansson)
 BuildRequires:  pkgconfig(opusfile)
-%ifnarch armv7hl ppc64le
+%ifnarch armv7hl
 BuildRequires:  libdispatch-devel
 %endif
 
