@@ -1,12 +1,13 @@
 %global toolchain clang
+%global optflags %optflags -Wno-unused-but-set-variable
 
 # Git submodules
-%global mp4p_commit        82291e47ef90f5d36dfa6dc77c59d74496c55a45
+%global mp4p_commit        a80941da6e395953b79a1c50cb855f05cc27a5c2
 %global mp4p_shortcommit   %(c=%{mp4p_commit}; echo ${c:0:7})
 
 Name:           deadbeef
-Version:        1.8.8
-Release:        6%{?dist}
+Version:        1.9.0
+Release:        1%{?dist}
 Summary:        An audio player for GNU/Linux
 Summary(ru):    Музыкальный проигрыватель для GNU/Linux
 
@@ -14,9 +15,6 @@ License:        GPLv2+ and LGPLv2+ and BSD and MIT and zlib
 URL:            https://deadbeef.sourceforge.io/
 Source0:        https://github.com/DeaDBeeF-Player/%{name}/archive/%{version}.tar.gz
 Source1:        https://github.com/DeaDBeeF-Player/mp4p/archive/%{mp4p_commit}/mp4p-%{mp4p_shortcommit}.tar.gz
-# Fix segfault
-# https://github.com/DeaDBeeF-Player/deadbeef/issues/2664
-Patch0:         segfault_fix.patch
 
 # Build for armv7hl failed
 # https://github.com/DeaDBeeF-Player/deadbeef/issues/2538
@@ -161,6 +159,9 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/%{name}.desktop
 
 
 %changelog
+* Sat May 14 2022 Vasiliy N. Glazov <vascom2@gmail.com> - 1.9.0-1
+- Update to 1.9.0
+
 * Sat Mar 05 2022 Leigh Scott <leigh123linux@gmail.com> - 1.8.8-6
 - Use compat-ffmpeg4 for f36+
 
