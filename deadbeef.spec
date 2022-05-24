@@ -6,7 +6,7 @@
 %global mp4p_shortcommit   %(c=%{mp4p_commit}; echo ${c:0:7})
 
 Name:           deadbeef
-Version:        1.9.0
+Version:        1.9.1
 Release:        1%{?dist}
 Summary:        An audio player for GNU/Linux
 Summary(ru):    Музыкальный проигрыватель для GNU/Linux
@@ -159,6 +159,9 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/%{name}.desktop
 
 
 %changelog
+* Tue May 24 2022 Vasiliy N. Glazov <vascom2@gmail.com> - 1.9.1-1
+- Update to 1.9.1
+
 * Sat May 14 2022 Vasiliy N. Glazov <vascom2@gmail.com> - 1.9.0-1
 - Update to 1.9.0
 
