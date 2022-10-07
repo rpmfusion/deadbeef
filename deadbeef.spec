@@ -1,5 +1,5 @@
 %global toolchain clang
-%global optflags %optflags -Wno-unused-but-set-variable
+%global optflags %optflags -Wno-unused-but-set-variable -Wno-unused-variable
 
 # Git submodules
 %global mp4p_commit        814f747ae854c51d3c2408d036a208f1db20cf74
