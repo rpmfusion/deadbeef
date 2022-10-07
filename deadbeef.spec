@@ -2,12 +2,12 @@
 %global optflags %optflags -Wno-unused-but-set-variable
 
 # Git submodules
-%global mp4p_commit        a80941da6e395953b79a1c50cb855f05cc27a5c2
+%global mp4p_commit        814f747ae854c51d3c2408d036a208f1db20cf74
 %global mp4p_shortcommit   %(c=%{mp4p_commit}; echo ${c:0:7})
 
 Name:           deadbeef
-Version:        1.9.1
-Release:        2%{?dist}
+Version:        1.9.2
+Release:        1%{?dist}
 Summary:        An audio player for GNU/Linux
 Summary(ru):    Музыкальный проигрыватель для GNU/Linux
 
@@ -96,11 +96,14 @@ mv mp4p-%{mp4p_commit}/* external/mp4p
 # Remove exec permission from source files
 find . \( -name '*.cpp' -or -name '*.hpp' -or -name '*.h' \) -and -executable -exec chmod -x {} \;
 
-for data in Play Pause Stop Next Prev
+sed -i 's|Toggle Pause|Toggle-Pause|' deadbeef.desktop.in
+for data in Play Pause Toggle-Pause Stop Next Prev
 do
     sed -i "s|$data Shortcut Group|X-$data Shortcut Group|" deadbeef.desktop.in
 done
 
+# Remove unknown pragma
+sed -i '/#pragma warning "using sse2 for ftoi"/d' fastftoi.h
 
 %build
 %if 0%{?fedora} && 0%{?fedora} > 35
@@ -159,6 +162,9 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/%{name}.desktop
 
 
 %changelog
+* Fri Oct 07 2022 Vasiliy N. Glazov <vascom2@gmail.com> - 1.9.2-1
+- Update to 1.9.2
+
 * Sun Aug 07 2022 RPM Fusion Release Engineering <sergiomb@rpmfusion.org> - 1.9.1-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_37_Mass_Rebuild and ffmpeg
   5.1
