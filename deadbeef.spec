@@ -6,7 +6,7 @@
 %global mp4p_shortcommit   %(c=%{mp4p_commit}; echo ${c:0:7})
 
 Name:           deadbeef
-Version:        1.9.2
+Version:        1.9.3
 Release:        1%{?dist}
 Summary:        An audio player for GNU/Linux
 Summary(ru):    Музыкальный проигрыватель для GNU/Linux
@@ -23,11 +23,7 @@ ExcludeArch:    armv7hl
 BuildRequires:  clang
 BuildRequires:  pkgconfig(alsa)
 BuildRequires:  pkgconfig(dbus-1)
-%if 0%{?fedora} && 0%{?fedora} > 35
-BuildRequires:  compat-ffmpeg4-devel
-%else
 BuildRequires:  ffmpeg-devel
-%endif
 BuildRequires:  pkgconfig(flac)
 BuildRequires:  faad2-devel
 BuildRequires:  pkgconfig(libmms)
@@ -162,6 +158,9 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/%{name}.desktop
 
 
 %changelog
+* Tue Nov 15 2022 Vasiliy N. Glazov <vascom2@gmail.com> - 1.9.3-1
+- Update to 1.9.3
+
 * Fri Oct 07 2022 Vasiliy N. Glazov <vascom2@gmail.com> - 1.9.2-1
 - Update to 1.9.2
 
