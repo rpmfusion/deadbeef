@@ -2,11 +2,11 @@
 %global optflags %optflags -Wno-unused-but-set-variable -Wno-unused-variable
 
 # Git submodules
-%global mp4p_commit        814f747ae854c51d3c2408d036a208f1db20cf74
+%global mp4p_commit        97ab7285d244de9cde6333e381f9f797b89ce8aa
 %global mp4p_shortcommit   %(c=%{mp4p_commit}; echo ${c:0:7})
 
 Name:           deadbeef
-Version:        1.9.3
+Version:        1.9.4
 Release:        1%{?dist}
 Summary:        An audio player for GNU/Linux
 Summary(ru):    Музыкальный проигрыватель для GNU/Linux
@@ -158,6 +158,9 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/%{name}.desktop
 
 
 %changelog
+* Tue Dec 20 2022 Vasiliy N. Glazov <vascom2@gmail.com> - 1.9.4-1
+- Update to 1.9.4
+
 * Tue Nov 15 2022 Vasiliy N. Glazov <vascom2@gmail.com> - 1.9.3-1
 - Update to 1.9.3
 
