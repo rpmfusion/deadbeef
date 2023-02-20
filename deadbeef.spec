@@ -95,6 +95,7 @@ tar -xvf %{SOURCE2}
 mv ddb_dsp_libretro-%{ddb_dsp_libretro_commit}/* external/ddb_dsp_libretro
 sed -i 's|#include <stdint.h>||' external/ddb_dsp_libretro/sinc_resampler.h
 sed -i "s|#pragma once|#pragma once\n#include <cstdint>|" external/ddb_dsp_libretro/sinc_resampler.h
+sed -i "s|size_t|std::size_t|" external/ddb_dsp_libretro/sinc_resampler.h
 
 tar -xvf %{SOURCE3}
 mv ddb_output_pw-%{ddb_output_pw_commit}/* external/ddb_output_pw
