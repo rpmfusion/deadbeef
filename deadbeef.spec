@@ -45,7 +45,7 @@ BuildRequires:  pkgconfig(samplerate)
 BuildRequires:  pkgconfig(sndfile)
 BuildRequires:  libtool
 BuildRequires:  pkgconfig(vorbis)
-BuildRequires:  pkgconfig(libpulse)
+BuildRequires:  pkgconfig(libpipewire-0.3)
 BuildRequires:  pkgconfig(wavpack)
 BuildRequires:  yasm-devel
 BuildRequires:  bison
@@ -58,7 +58,6 @@ BuildRequires:  pkgconfig(opusfile)
 %ifnarch armv7hl
 BuildRequires:  libdispatch-devel
 %endif
-
 
 Requires:       hicolor-icon-theme
 Requires:       %{name}-plugins%{?_isa} = %{version}-%{release}
@@ -127,7 +126,9 @@ export PKG_CONFIG_PATH="%{_libdir}/compat-ffmpeg4/pkgconfig"
 %else
     --enable-lfm \
 %endif
-    --enable-gtk3
+    --enable-gtk3 \
+    --disable-pulse \
+    --enable-pipewire
 %make_build
 
 
@@ -170,6 +171,7 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/%{name}.desktop
 %changelog
 * Mon Feb 20 2023 Vasiliy N. Glazov <vascom2@gmail.com> - 1.9.5-1
 - Update to 1.9.5
+- Switch to Pipewire
 
 * Tue Dec 20 2022 Vasiliy N. Glazov <vascom2@gmail.com> - 1.9.4-1
 - Update to 1.9.4
