@@ -5,16 +5,23 @@
 %global mp4p_commit        97ab7285d244de9cde6333e381f9f797b89ce8aa
 %global mp4p_shortcommit   %(c=%{mp4p_commit}; echo ${c:0:7})
 
+%global ddb_dsp_libretro_commit        b0921907bc8f5c8468d01de290980d236797b14e
+%global ddb_dsp_libretro_shortcommit   %(c=%{mp4p_commit}; echo ${c:0:7})
+
+%global ddb_output_pw_commit        14a3fc6b4e725fbb91009276b1220d39475928f8
+%global ddb_output_pw_shortcommit   %(c=%{mp4p_commit}; echo ${c:0:7})
+
 Name:           deadbeef
-Version:        1.9.4
+Version:        1.9.5
 Release:        1%{?dist}
 Summary:        An audio player for GNU/Linux
-Summary(ru):    Музыкальный проигрыватель для GNU/Linux
 
-License:        GPLv2+ and LGPLv2+ and BSD and MIT and zlib
+License:        GPL-2.0-or later AND LGPL-2.0-or-later and BSD and MIT AND Zlib
 URL:            https://deadbeef.sourceforge.io/
 Source0:        https://github.com/DeaDBeeF-Player/%{name}/archive/%{version}.tar.gz
 Source1:        https://github.com/DeaDBeeF-Player/mp4p/archive/%{mp4p_commit}/mp4p-%{mp4p_shortcommit}.tar.gz
+Source2:        https://github.com/DeaDBeeF-Player/ddb_dsp_libretro/archive/%{ddb_dsp_libretro_commit}/ddb_dsp_libretro-%{ddb_dsp_libretro_shortcommit}.tar.gz
+Source3:        https://github.com/DeaDBeeF-Player/ddb_output_pw/archive/%{ddb_output_pw_commit}/ddb_output_pw-%{ddb_output_pw_shortcommit}.tar.gz
 
 # Build for armv7hl failed
 # https://github.com/DeaDBeeF-Player/deadbeef/issues/2538
@@ -62,10 +69,6 @@ DeaDBeeF (as in 0xDEADBEEF) is an audio player for GNU/Linux systems with X11
 (though now it also runs in plain console without X, in FreeBSD, and in
 OpenSolaris).
 
-%description -l ru
-DeaDBeeF (как в 0xDEADBEEF) это аудиопроигрыватель для систем GNU/Linux с X11
-(теперь может работать и в чистой консоли).
-
 
 %package devel
 Summary:    Static library and header files for the %{name}
@@ -88,6 +91,12 @@ This package contains plugins for %{name}
 %autosetup -p1
 tar -xvf %{SOURCE1}
 mv mp4p-%{mp4p_commit}/* external/mp4p
+
+tar -xvf %{SOURCE2}
+mv ddb_dsp_libretro-%{ddb_dsp_libretro_commit}/* external/ddb_dsp_libretro
+
+tar -xvf %{SOURCE3}
+mv ddb_output_pw-%{ddb_output_pw_commit}/* external/ddb_output_pw
 
 # Remove exec permission from source files
 find . \( -name '*.cpp' -or -name '*.hpp' -or -name '*.h' \) -and -executable -exec chmod -x {} \;
@@ -158,6 +167,9 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/%{name}.desktop
 
 
 %changelog
+* Mon Feb 20 2023 Vasiliy N. Glazov <vascom2@gmail.com> - 1.9.5-1
+- Update to 1.9.5
+
 * Tue Dec 20 2022 Vasiliy N. Glazov <vascom2@gmail.com> - 1.9.4-1
 - Update to 1.9.4
 
