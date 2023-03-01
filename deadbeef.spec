@@ -13,7 +13,7 @@
 
 Name:           deadbeef
 Version:        1.9.5
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        An audio player for GNU/Linux
 
 License:        GPL-2.0-or later AND LGPL-2.0-or-later and BSD and MIT AND Zlib
@@ -171,6 +171,9 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/%{name}.desktop
 
 
 %changelog
+* Wed Mar 01 2023 Leigh Scott <leigh123linux@gmail.com> - 1.9.5-2
+- Rebuild for new ffmpeg
+
 * Mon Feb 20 2023 Vasiliy N. Glazov <vascom2@gmail.com> - 1.9.5-1
 - Update to 1.9.5
 - Switch to Pipewire
