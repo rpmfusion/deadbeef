@@ -12,8 +12,8 @@
 %global ddb_output_pw_shortcommit   %(c=%{mp4p_commit}; echo ${c:0:7})
 
 Name:           deadbeef
-Version:        1.9.5
-Release:        2%{?dist}
+Version:        1.9.6
+Release:        3%{?dist}
 Summary:        An audio player for GNU/Linux
 
 License:        GPL-2.0-or later AND LGPL-2.0-or-later and BSD and MIT AND Zlib
@@ -62,6 +62,7 @@ BuildRequires:  libdispatch-devel
 Requires:       hicolor-icon-theme
 Requires:       %{name}-plugins%{?_isa} = %{version}-%{release}
 
+Recommends:     deadbeef-mpris2-plugin
 
 %description
 DeaDBeeF (as in 0xDEADBEEF) is an audio player for GNU/Linux systems with X11 
@@ -171,6 +172,9 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/%{name}.desktop
 
 
 %changelog
+* Tue Aug 01 2023 Vasiliy N. Glazov <vascom2@gmail.com> - 1.9.5-3
+- Add mpris plugin to recommends
+
 * Wed Mar 01 2023 Leigh Scott <leigh123linux@gmail.com> - 1.9.5-2
 - Rebuild for new ffmpeg
 
