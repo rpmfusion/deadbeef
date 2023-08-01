@@ -12,7 +12,7 @@
 %global ddb_output_pw_shortcommit   %(c=%{mp4p_commit}; echo ${c:0:7})
 
 Name:           deadbeef
-Version:        1.9.6
+Version:        1.9.5
 Release:        3%{?dist}
 Summary:        An audio player for GNU/Linux
 
