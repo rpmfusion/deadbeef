@@ -1,5 +1,6 @@
 %global toolchain clang
 %global optflags %optflags -Wno-unused-but-set-variable -Wno-unused-variable
+%global build_cxxflags %build_cxxflags -std=c++11
 
 # Git submodules
 %global mp4p_commit        97ab7285d244de9cde6333e381f9f797b89ce8aa
@@ -13,7 +14,7 @@
 
 Name:           deadbeef
 Version:        1.9.5
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        An audio player for GNU/Linux
 
 License:        GPL-2.0-or later AND LGPL-2.0-or-later and BSD and MIT AND Zlib
@@ -172,6 +173,9 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/%{name}.desktop
 
 
 %changelog
+* Fri Aug 04 2023 Vasiliy N. Glazov <vascom2@gmail.com> - 1.9.5-4
+- Fix Build for F39
+
 * Tue Aug 01 2023 Vasiliy N. Glazov <vascom2@gmail.com> - 1.9.5-3
 - Add mpris plugin to recommends
 
