@@ -14,7 +14,7 @@
 
 Name:           deadbeef
 Version:        1.9.5
-Release:        4%{?dist}
+Release:        5%{?dist}
 Summary:        An audio player for GNU/Linux
 
 License:        GPL-2.0-or later AND LGPL-2.0-or-later and BSD and MIT AND Zlib
@@ -173,6 +173,9 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/%{name}.desktop
 
 
 %changelog
+* Wed Nov 08 2023 Leigh Scott <leigh123linux@gmail.com> - 1.9.5-5
+- Rebuild for new faad2 version
+
 * Fri Aug 04 2023 Vasiliy N. Glazov <vascom2@gmail.com> - 1.9.5-4
 - Fix Build for F39
 
