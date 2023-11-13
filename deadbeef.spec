@@ -3,18 +3,18 @@
 %global build_cxxflags %build_cxxflags -std=c++11
 
 # Git submodules
-%global mp4p_commit        97ab7285d244de9cde6333e381f9f797b89ce8aa
+%global mp4p_commit        156195ccb635f016dc34b89425bfbecf046c90d4
 %global mp4p_shortcommit   %(c=%{mp4p_commit}; echo ${c:0:7})
 
-%global ddb_dsp_libretro_commit        b0921907bc8f5c8468d01de290980d236797b14e
+%global ddb_dsp_libretro_commit        b4d3db19566398603069d02eeacb3b06987a1b74
 %global ddb_dsp_libretro_shortcommit   %(c=%{mp4p_commit}; echo ${c:0:7})
 
-%global ddb_output_pw_commit        14a3fc6b4e725fbb91009276b1220d39475928f8
+%global ddb_output_pw_commit        0b099d13ab0e89d9934aabdeb2872f0f66ea6960
 %global ddb_output_pw_shortcommit   %(c=%{mp4p_commit}; echo ${c:0:7})
 
 Name:           deadbeef
-Version:        1.9.5
-Release:        5%{?dist}
+Version:        1.9.6
+Release:        1%{?dist}
 Summary:        An audio player for GNU/Linux
 
 License:        GPL-2.0-or later AND LGPL-2.0-or-later and BSD and MIT AND Zlib
@@ -173,6 +173,9 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/%{name}.desktop
 
 
 %changelog
+* Mon Nov 13 2023 Vasiliy N. Glazov <vascom2@gmail.com> - 1.9.6-1
+- Update to 1.9.6
+
 * Wed Nov 08 2023 Leigh Scott <leigh123linux@gmail.com> - 1.9.5-5
 - Rebuild for new faad2 version
 
