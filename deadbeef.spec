@@ -111,9 +111,6 @@ do
     sed -i "s|$data Shortcut Group|X-$data Shortcut Group|" deadbeef.desktop.in
 done
 
-# Remove unknown pragma
-sed -i '/#pragma warning "using sse2 for ftoi"/d' fastftoi.h
-
 %build
 %if 0%{?fedora} && 0%{?fedora} > 35
 export PKG_CONFIG_PATH="%{_libdir}/compat-ffmpeg4/pkgconfig"
