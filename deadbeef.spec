@@ -14,7 +14,7 @@
 
 Name:           deadbeef
 Version:        1.9.6
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        An audio player for GNU/Linux
 
 License:        GPL-2.0-or later AND LGPL-2.0-or-later and BSD and MIT AND Zlib
@@ -23,6 +23,7 @@ Source0:        https://github.com/DeaDBeeF-Player/%{name}/archive/%{version}.ta
 Source1:        https://github.com/DeaDBeeF-Player/mp4p/archive/%{mp4p_commit}/mp4p-%{mp4p_shortcommit}.tar.gz
 Source2:        https://github.com/DeaDBeeF-Player/ddb_dsp_libretro/archive/%{ddb_dsp_libretro_commit}/ddb_dsp_libretro-%{ddb_dsp_libretro_shortcommit}.tar.gz
 Source3:        https://github.com/DeaDBeeF-Player/ddb_output_pw/archive/%{ddb_output_pw_commit}/ddb_output_pw-%{ddb_output_pw_shortcommit}.tar.gz
+Patch0:         https://github.com/DeaDBeeF-Player/deadbeef/commit/d4cca5605447122cd080691f43e46047a6039359.patch#/deadbeef-ffmpeg-7.patch
 
 # Build for armv7hl failed
 # https://github.com/DeaDBeeF-Player/deadbeef/issues/2538
@@ -170,6 +171,9 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/%{name}.desktop
 
 
 %changelog
+* Sat Oct 12 2024 Leigh Scott <leigh123linux@gmail.com> - 1.9.6-4
+- rebuild for ffmpeg
+
 * Thu Aug 01 2024 RPM Fusion Release Engineering <sergiomb@rpmfusion.org> - 1.9.6-3
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_41_Mass_Rebuild
 
