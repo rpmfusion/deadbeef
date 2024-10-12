@@ -99,6 +99,9 @@ mv ddb_dsp_libretro-%{ddb_dsp_libretro_commit}/* external/ddb_dsp_libretro
 sed -i 's|#include <stdint.h>||' external/ddb_dsp_libretro/sinc_resampler.h
 sed -i "s|#pragma once|#pragma once\n#include <cstdint>|" external/ddb_dsp_libretro/sinc_resampler.h
 sed -i "s|size_t|std::size_t|" external/ddb_dsp_libretro/sinc_resampler.h
+%ifnarch x86_64
+sed -i -re 's/^(.*)\s+([-]msse3)\s+(.*)$/\1 \3/g' external/ddb_dsp_libretro/Makefile.am
+%endif
 
 tar -xvf %{SOURCE3}
 mv ddb_output_pw-%{ddb_output_pw_commit}/* external/ddb_output_pw
@@ -113,9 +116,6 @@ do
 done
 
 %build
-%if 0%{?fedora} && 0%{?fedora} > 35
-export PKG_CONFIG_PATH="%{_libdir}/compat-ffmpeg4/pkgconfig"
-%endif
 ./autogen.sh
 %configure \
     --enable-ffmpeg --docdir=%{_defaultdocdir}/%{name}-%{version} \
