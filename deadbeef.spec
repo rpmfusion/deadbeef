@@ -14,7 +14,7 @@
 
 Name:           deadbeef
 Version:        1.9.6
-Release:        4%{?dist}
+Release:        5%{?dist}
 Summary:        An audio player for GNU/Linux
 
 License:        GPL-2.0-or later AND LGPL-2.0-or-later and BSD and MIT AND Zlib
@@ -171,6 +171,9 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/%{name}.desktop
 
 
 %changelog
+* Tue Jan 28 2025 RPM Fusion Release Engineering <sergiomb@rpmfusion.org> - 1.9.6-5
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_42_Mass_Rebuild
+
 * Sat Oct 12 2024 Leigh Scott <leigh123linux@gmail.com> - 1.9.6-4
 - rebuild for ffmpeg
 
