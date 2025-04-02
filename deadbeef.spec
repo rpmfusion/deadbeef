@@ -2,32 +2,14 @@
 %global optflags %optflags -Wno-unused-but-set-variable -Wno-unused-variable
 %global build_cxxflags %build_cxxflags -std=c++11
 
-# Git submodules
-%global mp4p_commit        156195ccb635f016dc34b89425bfbecf046c90d4
-%global mp4p_shortcommit   %(c=%{mp4p_commit}; echo ${c:0:7})
-
-%global ddb_dsp_libretro_commit        b4d3db19566398603069d02eeacb3b06987a1b74
-%global ddb_dsp_libretro_shortcommit   %(c=%{mp4p_commit}; echo ${c:0:7})
-
-%global ddb_output_pw_commit        0b099d13ab0e89d9934aabdeb2872f0f66ea6960
-%global ddb_output_pw_shortcommit   %(c=%{mp4p_commit}; echo ${c:0:7})
-
 Name:           deadbeef
-Version:        1.9.6
-Release:        5%{?dist}
+Version:        1.10.0
+Release:        1%{?dist}
 Summary:        An audio player for GNU/Linux
 
 License:        GPL-2.0-or later AND LGPL-2.0-or-later and BSD and MIT AND Zlib
 URL:            https://deadbeef.sourceforge.io/
-Source0:        https://github.com/DeaDBeeF-Player/%{name}/archive/%{version}.tar.gz
-Source1:        https://github.com/DeaDBeeF-Player/mp4p/archive/%{mp4p_commit}/mp4p-%{mp4p_shortcommit}.tar.gz
-Source2:        https://github.com/DeaDBeeF-Player/ddb_dsp_libretro/archive/%{ddb_dsp_libretro_commit}/ddb_dsp_libretro-%{ddb_dsp_libretro_shortcommit}.tar.gz
-Source3:        https://github.com/DeaDBeeF-Player/ddb_output_pw/archive/%{ddb_output_pw_commit}/ddb_output_pw-%{ddb_output_pw_shortcommit}.tar.gz
-Patch0:         https://github.com/DeaDBeeF-Player/deadbeef/commit/d4cca5605447122cd080691f43e46047a6039359.patch#/deadbeef-ffmpeg-7.patch
-
-# Build for armv7hl failed
-# https://github.com/DeaDBeeF-Player/deadbeef/issues/2538
-ExcludeArch:    armv7hl
+Source0:        https://sourceforge.net/projects/%{name}/files/travis/linux/%{version}/%{name}-%{version}.tar.bz2
 
 BuildRequires:  clang
 BuildRequires:  pkgconfig(alsa)
@@ -57,9 +39,7 @@ BuildRequires:  pkgconfig(gtk+-3.0)
 BuildRequires:  desktop-file-utils
 BuildRequires:  pkgconfig(jansson)
 BuildRequires:  pkgconfig(opusfile)
-%ifnarch armv7hl
 BuildRequires:  libdispatch-devel
-%endif
 
 Requires:       hicolor-icon-theme
 Requires:       %{name}-plugins%{?_isa} = %{version}-%{release}
@@ -91,20 +71,14 @@ This package contains plugins for %{name}
 
 %prep
 %autosetup -p1
-tar -xvf %{SOURCE1}
-mv mp4p-%{mp4p_commit}/* external/mp4p
 
-tar -xvf %{SOURCE2}
-mv ddb_dsp_libretro-%{ddb_dsp_libretro_commit}/* external/ddb_dsp_libretro
-sed -i 's|#include <stdint.h>||' external/ddb_dsp_libretro/sinc_resampler.h
-sed -i "s|#pragma once|#pragma once\n#include <cstdint>|" external/ddb_dsp_libretro/sinc_resampler.h
 sed -i "s|size_t|std::size_t|" external/ddb_dsp_libretro/sinc_resampler.h
 %ifnarch x86_64
 sed -i -re 's/^(.*)\s+([-]msse3)\s+(.*)$/\1 \3/g' external/ddb_dsp_libretro/Makefile.am
 %endif
 
-tar -xvf %{SOURCE3}
-mv ddb_output_pw-%{ddb_output_pw_commit}/* external/ddb_output_pw
+# Regenerate the build files
+autoreconf -fiv
 
 # Remove exec permission from source files
 find . \( -name '*.cpp' -or -name '*.hpp' -or -name '*.h' \) -and -executable -exec chmod -x {} \;
@@ -116,13 +90,13 @@ do
 done
 
 %build
-./autogen.sh
 %configure \
-    --enable-ffmpeg --docdir=%{_defaultdocdir}/%{name}-%{version} \
+    --enable-ffmpeg \
+    --docdir=%{_defaultdocdir}/%{name}-%{version} \
     --disable-silent-rules \
     --disable-static \
     --disable-gtk2 \
-%ifarch armv7hl ppc64le
+%ifarch ppc64le
     --disable-lfm \
     --disable-notify \
 %else
@@ -171,6 +145,13 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/%{name}.desktop
 
 
 %changelog
+* Wed Apr 02 2025 Leigh Scott <leigh123linux@gmail.com> - 1.10.0-1
+- Update to 1.10.0
+- Switch to release tarball as it makes packaging easier
+- Drop ffmpeg-7 patch
+- Use autoreconf to regenerate the build files
+- Drop the arm conditionals
+
 * Tue Jan 28 2025 RPM Fusion Release Engineering <sergiomb@rpmfusion.org> - 1.9.6-5
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_42_Mass_Rebuild
 
