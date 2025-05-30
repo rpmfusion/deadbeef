@@ -4,7 +4,7 @@
 
 Name:           deadbeef
 Version:        1.10.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        An audio player for GNU/Linux
 
 License:        GPL-2.0-or later AND LGPL-2.0-or-later and BSD and MIT AND Zlib
@@ -145,6 +145,9 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/%{name}.desktop
 
 
 %changelog
+* Fri May 30 2025 Leigh Scott <leigh123linux@gmail.com> - 1.10.0-2
+- Rebuild for new flac .so version
+
 * Wed Apr 02 2025 Leigh Scott <leigh123linux@gmail.com> - 1.10.0-1
 - Update to 1.10.0
 - Switch to release tarball as it makes packaging easier
