@@ -10,6 +10,7 @@ Summary:        An audio player for GNU/Linux
 License:        GPL-2.0-or later AND LGPL-2.0-or-later and BSD and MIT AND Zlib
 URL:            https://deadbeef.sourceforge.io/
 Source0:        https://sourceforge.net/projects/%{name}/files/travis/linux/%{version}/%{name}-%{version}.tar.bz2
+Patch1:         gcc16.patch
 
 BuildRequires:  clang
 BuildRequires:  pkgconfig(alsa)

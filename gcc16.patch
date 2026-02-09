@@ -1,0 +1,22 @@
+--- deadbeef-1.10.0/plugins/gtkui/dspconfig.c.orig	2026-02-09 01:30:05.781198816 +0000
++++ deadbeef-1.10.0/plugins/gtkui/dspconfig.c	2026-02-09 01:55:56.603550911 +0000
+@@ -76,7 +76,7 @@ static int dirent_alphasort (const struc
+ 
+ static int
+ scandir_preset_filter (const struct dirent *ent) {
+-    char *ext = strrchr (ent->d_name, '.');
++    const char *ext = strrchr (ent->d_name, '.');
+     if (ext && !strcasecmp (ext, ".txt")) {
+         return 1;
+     }
+--- deadbeef-1.10.0/plugins/gtkui/trkproperties.c.orig	2026-02-09 01:47:06.612967501 +0000
++++ deadbeef-1.10.0/plugins/gtkui/trkproperties.c	2026-02-09 01:47:26.225654547 +0000
+@@ -889,7 +889,7 @@ _semicolon_separated_string_for_meta(DB_
+ static void
+ _iterate_semicolon_separated_substrings(const char *svalue, void (^completion_block)(const char *item)) {
+     while (*svalue) {
+-        char *semicolon = strchr(svalue, ';');
++        const char *semicolon = strchr(svalue, ';');
+ 
+         size_t len;
+         if (semicolon == NULL) {
