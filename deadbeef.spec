@@ -1,16 +1,14 @@
 %global toolchain clang
-%global optflags %optflags -Wno-unused-but-set-variable -Wno-unused-variable
-%global build_cxxflags %build_cxxflags -std=c++11
+%global optflags %optflags -Wno-unused-but-set-variable -Wno-unused-variable -Wno-deprecated-declarations
 
 Name:           deadbeef
-Version:        1.10.0
-Release:        5%{?dist}
+Version:        1.10.1
+Release:        1%{?dist}
 Summary:        An audio player for GNU/Linux
 
 License:        GPL-2.0-or later AND LGPL-2.0-or-later and BSD and MIT AND Zlib
 URL:            https://deadbeef.sourceforge.io/
-Source0:        https://sourceforge.net/projects/%{name}/files/travis/linux/%{version}/%{name}-%{version}.tar.bz2
-Patch1:         gcc16.patch
+Source0:        https://downloads.sourceforge.net/project/%{name}/Builds/%{version}/linux/%{name}-%{version}.tar.bz2
 
 BuildRequires:  clang
 BuildRequires:  pkgconfig(alsa)
@@ -122,15 +120,16 @@ sed -i -e "s!MP3!MP3;!" %{buildroot}%{_datadir}/applications/%{name}.desktop
 
 %check
 desktop-file-validate %{buildroot}%{_datadir}/applications/%{name}.desktop
-
+desktop-file-validate %{buildroot}%{_datadir}/applications/%{name}_enqueue.desktop
 
 %files -f %{name}.lang
 %doc README ChangeLog AUTHORS
-%license COPYING
+%license COPYING COPYING.GPLv2 COPYING.LGPLv2.1
 %{_defaultdocdir}/%{name}-%{version}
 %{_bindir}/%{name}
 %dir %{_libdir}/%{name}
 %{_datadir}/applications/%{name}.desktop
+%{_datadir}/applications/%{name}_enqueue.desktop
 %{_datadir}/%{name}
 %{_datadir}/pixmaps/%{name}.png
 %{_datadir}/icons/hicolor/*/apps/*
@@ -146,6 +145,11 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/%{name}.desktop
 
 
 %changelog
+* Mon Mar 09 2026 Leigh Scott <leigh123linux@gmail.com> - 1.10.1-1
+- Update to 1.10.1
+- Remove std=c++11 build_cxxflags fix, it isn't needed with 1.10.x
+- Add missing license files
+
 * Mon Feb 02 2026 RPM Fusion Release Engineering <sergiomb@rpmfusion.org> - 1.10.0-5
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_44_Mass_Rebuild
 
