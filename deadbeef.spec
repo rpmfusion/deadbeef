@@ -2,7 +2,7 @@
 %global optflags %optflags -Wno-unused-but-set-variable -Wno-unused-variable -Wno-deprecated-declarations
 
 Name:           deadbeef
-Version:        1.10.1
+Version:        1.10.2
 Release:        1%{?dist}
 Summary:        An audio player for GNU/Linux
 
@@ -145,6 +145,9 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/%{name}_enqueue.deskt
 
 
 %changelog
+* Tue Mar 17 2026 Leigh Scott <leigh123linux@gmail.com> - 1.10.2-1
+- Update to 1.10.2
+
 * Mon Mar 09 2026 Leigh Scott <leigh123linux@gmail.com> - 1.10.1-1
 - Update to 1.10.1
 - Remove std=c++11 build_cxxflags fix, it isn't needed with 1.10.x
