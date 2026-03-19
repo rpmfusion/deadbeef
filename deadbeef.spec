@@ -2,8 +2,9 @@
 %global optflags %optflags -Wno-unused-but-set-variable -Wno-unused-variable -Wno-deprecated-declarations
 
 Name:           deadbeef
+Epoch:          1
 Version:        1.10.2
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        An audio player for GNU/Linux
 
 License:        GPL-2.0-or later AND LGPL-2.0-or-later and BSD and MIT AND Zlib
@@ -41,9 +42,7 @@ BuildRequires:  pkgconfig(opusfile)
 BuildRequires:  libdispatch-devel
 
 Requires:       hicolor-icon-theme
-Requires:       %{name}-plugins%{?_isa} = %{version}-%{release}
-
-Recommends:     deadbeef-mpris2-plugin
+Requires:       %{name}-plugins%{?_isa} = %{?epoch}:%{version}-%{release}
 
 %description
 DeaDBeeF (as in 0xDEADBEEF) is an audio player for GNU/Linux systems with X11 
@@ -53,7 +52,7 @@ OpenSolaris).
 
 %package devel
 Summary:    Static library and header files for the %{name}
-Requires:   %{name}%{?_isa} = %{version}-%{release}
+Requires:   %{name}%{?_isa} = %{?epoch}:%{version}-%{release}
 
 
 %description devel
@@ -62,7 +61,9 @@ developing %{name}.
 
 %package plugins
 Summary:    Plugins for %{name}
-Requires:   %{name}%{?_isa} = %{version}-%{release}
+Requires:   %{name}%{?_isa} = %{?epoch}:%{version}-%{release}
+Obsoletes:  %{name}-mpris2-plugin < %{?epoch}:%{version}-%{release}
+Provides:   %{name}-mpris2-plugin = %{?epoch}:%{version}-%{release}
 
 %description plugins
 This package contains plugins for %{name}
@@ -145,6 +146,9 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/%{name}_enqueue.deskt
 
 
 %changelog
+* Thu Mar 19 2026 Leigh Scott <leigh123linux@gmail.com> - 1:1.10.2-2
+- Add obsoletes deadbeef-mpris2-plugin
+
 * Tue Mar 17 2026 Leigh Scott <leigh123linux@gmail.com> - 1.10.2-1
 - Update to 1.10.2
 
