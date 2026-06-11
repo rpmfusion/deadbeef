@@ -3,8 +3,8 @@
 
 Name:           deadbeef
 Epoch:          1
-Version:        1.10.2
-Release:        2%{?dist}
+Version:        1.10.3
+Release:        1%{?dist}
 Summary:        An audio player for GNU/Linux
 
 License:        GPL-2.0-or later AND LGPL-2.0-or-later and BSD and MIT AND Zlib
@@ -17,7 +17,6 @@ BuildRequires:  pkgconfig(dbus-1)
 BuildRequires:  ffmpeg-devel
 BuildRequires:  pkgconfig(flac)
 BuildRequires:  faad2-devel
-BuildRequires:  pkgconfig(libmms)
 BuildRequires:  intltool
 BuildRequires:  gettext-devel
 BuildRequires:  pkgconfig(libcddb)
@@ -33,7 +32,6 @@ BuildRequires:  pkgconfig(libpipewire-0.3)
 BuildRequires:  pkgconfig(wavpack)
 BuildRequires:  yasm-devel
 BuildRequires:  bison
-BuildRequires:  pkgconfig(imlib2)
 BuildRequires:  pkgconfig(libzip)
 BuildRequires:  pkgconfig(gtk+-3.0)
 BuildRequires:  desktop-file-utils
@@ -45,7 +43,7 @@ Requires:       hicolor-icon-theme
 Requires:       %{name}-plugins%{?_isa} = %{?epoch}:%{version}-%{release}
 
 %description
-DeaDBeeF (as in 0xDEADBEEF) is an audio player for GNU/Linux systems with X11 
+DeaDBeeF (as in 0xDEADBEEF) is an audio player for GNU/Linux systems with X11
 (though now it also runs in plain console without X, in FreeBSD, and in
 OpenSolaris).
 
@@ -146,6 +144,9 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/%{name}_enqueue.deskt
 
 
 %changelog
+* Thu Jun 11 2026 Leigh Scott <leigh123linux@gmail.com> - 1:1.10.3-1
+- Update to 1.10.3
+
 * Thu Mar 19 2026 Leigh Scott <leigh123linux@gmail.com> - 1:1.10.2-2
 - Add obsoletes deadbeef-mpris2-plugin
 
