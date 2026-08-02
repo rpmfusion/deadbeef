@@ -4,7 +4,7 @@
 Name:           deadbeef
 Epoch:          1
 Version:        1.10.3
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        An audio player for GNU/Linux
 
 License:        GPL-2.0-or later AND LGPL-2.0-or-later and BSD and MIT AND Zlib
@@ -144,6 +144,9 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/%{name}_enqueue.deskt
 
 
 %changelog
+* Sun Aug 02 2026 RPM Fusion Release Engineering <leigh123linux@rpmfusion.org> - 1:1.10.3-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_45_Mass_Rebuild
+
 * Thu Jun 11 2026 Leigh Scott <leigh123linux@gmail.com> - 1:1.10.3-1
 - Update to 1.10.3
 
