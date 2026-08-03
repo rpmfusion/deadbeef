@@ -103,6 +103,10 @@ done
     --enable-gtk3 \
     --disable-pulse \
     --enable-pipewire
+# deadbeef gtkui plugin hardcodes -std=c99, which breaks under GLib's
+# G_DECLARE_FINAL_TYPE (needs C11+ typedef-redeclaration semantics).
+# Bump just the gtkui CFLAGS post-configure rather than patching upstream.
+sed -i 's/-std=c99/-std=gnu11/' plugins/gtkui/Makefile
 %make_build
 
 
