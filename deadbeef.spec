@@ -117,7 +117,6 @@ find %{buildroot} -name "*.la" -exec rm {} \;
 install -Dpm0644 %{buildroot}%{_datadir}/icons/hicolor/24x24/apps/%{name}.png \
     %{buildroot}%{_datadir}/pixmaps/%{name}.png
 
-sed -i -e "s!MP3!MP3;!" %{buildroot}%{_datadir}/applications/%{name}.desktop
 
 %find_lang %{name}
 
