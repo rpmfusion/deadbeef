@@ -4,7 +4,7 @@
 Name:           deadbeef
 Epoch:          1
 Version:        1.10.3
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        An audio player for GNU/Linux
 
 License:        GPL-2.0-or later AND LGPL-2.0-or-later and BSD and MIT AND Zlib
@@ -148,6 +148,9 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/%{name}_enqueue.deskt
 
 
 %changelog
+* Mon Nov 23 2026 Nicolas Chauvet <kwizart@gmail.com> - 1:1.10.3-4
+- rebuilt
+
 * Sat Aug 22 2026 Leigh Scott <leigh123linux@gmail.com> - 1:1.10.3-3
 - Rebuild for new ffmpeg
 
